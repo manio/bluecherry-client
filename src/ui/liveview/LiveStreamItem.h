@@ -23,6 +23,7 @@
 #include "core/LiveStream.h"
 #include <QStyleOptionGraphicsItem>
 #include <QQuickPaintedItem>
+#include <QTimer>
 
 //class QGLContext;
 
@@ -60,6 +61,7 @@ private slots:
 
 private:
     QSharedPointer<LiveStream> m_stream;
+    QTimer      *internalTimer;
     /*bool m_useAdvancedGL;
     unsigned m_texId;
     const QGLContext *m_texLastContext;

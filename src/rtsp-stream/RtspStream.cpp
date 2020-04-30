@@ -389,6 +389,11 @@ void RtspStream::unref()
 QImage RtspStream::currentFrame() const
 {
     QMutexLocker locker(&m_currentFrameMutex);
+    RtspStreamFrame *sf = m_thread->frameToDisplay();
+    if (!sf) // no new frame
+        return m_currentFrame.copy();
+    return QImage(sf->avFrame()->data[0], sf->avFrame()->width, sf->avFrame()->height,
+                            sf->avFrame()->linesize[0], QImage::Format_RGB32).copy();
     return m_currentFrame.copy();
 }
 

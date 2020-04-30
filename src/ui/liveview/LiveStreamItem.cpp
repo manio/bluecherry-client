@@ -43,6 +43,14 @@ LiveStreamItem::LiveStreamItem(QQuickItem *parent)
     //this->setFlag(QGraphicsItem::ItemHasNoContents, false);
     //updateSettings();
     //connect(bcApp, SIGNAL(settingsChanged()), SLOT(updateSettings()));
+
+    //adding a timer
+    internalTimer = new QTimer(this);
+    connect(internalTimer, &QTimer::timeout, [=](){
+        updateFrame();
+        update();                                   // redraws the object
+    });
+    internalTimer->start(100);
 }
 
 LiveStreamItem::~LiveStreamItem()
@@ -133,13 +141,20 @@ void LiveStreamItem::paint(QPainter *p)
     //Q_UNUSED(widget);
     if (!m_stream)
         return;
-
     QImage frame = m_stream.data()->currentFrame();
 
     if (frame.isNull())
     {
-        p->fillRect(opt->rect, Qt::black);
+        p->fillRect(0,0,10,10, Qt::red);
         return;
+    }
+    else {
+        p->fillRect(0,0,10,10, Qt::green);
+        p->save();
+        p->setRenderHint(QPainter::SmoothPixmapTransform);
+        p->setCompositionMode(QPainter::CompositionMode_Source);
+        p->drawImage(0,0, frame);
+        p->restore();
     }
 
 
@@ -219,15 +234,15 @@ void LiveStreamItem::paint(QPainter *p)
         //m_texInvalidate = 0;
         //m_texLastContext = 0;
 
-        p->save();
+        /*p->save();
         //p->setRenderHint(QPainter::SmoothPixmapTransform);
         p->setCompositionMode(QPainter::CompositionMode_Source);
         p->drawImage(opt->rect, frame);
         p->restore();
 
-        /* In some cases opt rect width and height may be negative */
+        // In some cases opt rect width and height may be negative
         if (opt->rect.width() > 0 && opt->rect.height() > 0)
-            m_stream.data()->setFrameSizeHint(opt->rect.width(), opt->rect.height());
+            m_stream.data()->setFrameSizeHint(opt->rect.width(), opt->rect.height());*/
     }
 
 }
