@@ -40,7 +40,7 @@ public:
 
 public slots:
     void addCamera(DVRCamera *camera);
-    void updateGeometry() { m_sizeHint = QSize(); QQuickView::updateGeometry(); }
+    void updateGeometry() { m_sizeHint = QSize(); /*QQuickView::updateGeometry();*/ }
 
     //void settingsChanged();
 

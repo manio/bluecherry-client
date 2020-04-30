@@ -21,6 +21,7 @@
 #include <QQuickItem>
 #include <QSharedPointer>
 #include "core/LiveStream.h"
+#include <QStyleOptionGraphicsItem>
 #include <QQuickPaintedItem>
 
 //class QGLContext;

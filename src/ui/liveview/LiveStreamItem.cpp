@@ -40,7 +40,7 @@ LiveStreamItem::LiveStreamItem(QQuickItem *parent)
     : QQuickPaintedItem(parent)/*, m_useAdvancedGL(true), m_texId(0), m_texLastContext(0), m_texInvalidate(false),
       m_texDataPtr(0)*/
 {
-    this->setFlag(QGraphicsItem::ItemHasNoContents, false);
+    //this->setFlag(QGraphicsItem::ItemHasNoContents, false);
     //updateSettings();
     //connect(bcApp, SIGNAL(settingsChanged()), SLOT(updateSettings()));
 }
@@ -130,7 +130,7 @@ void LiveStreamItem::updateFrameSize()
 
 void LiveStreamItem::paint(QPainter *p)
 {
-    Q_UNUSED(widget);
+    //Q_UNUSED(widget);
     if (!m_stream)
         return;
 

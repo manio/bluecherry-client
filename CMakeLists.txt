@@ -27,7 +27,7 @@ if (${CMAKE_MAJOR_VERSION} EQUAL 2 AND ${CMAKE_MINOR_VERSION} EQUAL 8 AND ${CMAK
 endif (${CMAKE_MAJOR_VERSION} EQUAL 2 AND ${CMAKE_MINOR_VERSION} EQUAL 8 AND ${CMAKE_PATCH_VERSION} GREATER 3) 
 
 option (DEVBUILD "Turn on some compiler flags helpful during development process" OFF)
-option (ENABLE_BREAKPAD "Enable Breakpad integration" ON)
+option (ENABLE_BREAKPAD "Enable Breakpad integration" OFF)
 option (BUILD_TESTING "Build the test suite" OFF )
 
 if (NOT DEFINED CMAKE_CONFIGURATION_TYPES AND NOT CMAKE_BUILD_TYPE)

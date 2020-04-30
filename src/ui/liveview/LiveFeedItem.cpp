@@ -213,7 +213,7 @@ void LiveFeedItem::saveSnapshot(const QString &ifile)
     if (frame.isNull())
         return;
 
-    QWidget *window = scene()->views().value(0);
+    /*QWidget *window = scene()->views().value(0);
 
     QString file = ifile;
 
@@ -238,7 +238,7 @@ void LiveFeedItem::saveSnapshot(const QString &ifile)
         QMessageBox::critical(window, tr("Snapshot Error"), tr("An error occurred while saving the snapshot image."),
                               QMessageBox::Ok);
         return;
-    }
+    }*/
 }
 
 /* contextMenuEvent will arrive after right clicks that were captured within QML.
@@ -252,7 +252,7 @@ void LiveFeedItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
     if (event->button() == Qt::RightButton)
         allowNextContextMenu = true;
 
-    QDeclarativeItem::mousePressEvent(event);
+    //QQuickItem::mousePressEvent(event);
 }
 
 void LiveFeedItem::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
@@ -511,10 +511,10 @@ QPoint LiveFeedItem::globalPosForItem(QQuickItem *item)
     QPoint pos = QCursor::pos();
     if (item)
     {
-        QGraphicsView *view = item->scene()->views().value(0);
+        /*QGraphicsView *view = item->scene()->views().value(0);
         Q_ASSERT(view && item->scene()->views().size() == 1);
         if (view)
-            pos = view->mapToGlobal(view->mapFromScene(item->mapToScene(0, item->height())));
+            pos = view->mapToGlobal(view->mapFromScene(item->mapToScene(0, item->height())));*/
     }
     return pos;
 }
@@ -532,14 +532,14 @@ void LiveFeedItem::ptzPresetSave()
     if (!m_ptz)
         return;
 
-    QGraphicsView *view = scene()->views().value(0);
+    /*QGraphicsView *view = scene()->views().value(0);
     Q_ASSERT(view && scene()->views().size() == 1);
 
     QString re = QInputDialog::getText(view, tr("Save PTZ preset"), tr("Enter a name for the new PTZ preset:"));
     if (re.isEmpty())
         return;
 
-    m_ptz->savePreset(-1, re);
+    m_ptz->savePreset(-1, re);*/
 }
 
 void LiveFeedItem::ptzPresetWindow()
@@ -550,7 +550,7 @@ void LiveFeedItem::ptzPresetWindow()
     PtzPresetsWindow *window = new PtzPresetsWindow(m_ptz.data(), bcApp->mainWindow);
     window->setAttribute(Qt::WA_DeleteOnClose);
 
-    QGraphicsView *view = scene()->views().value(0);
+    /*QGraphicsView *view = scene()->views().value(0);
     Q_ASSERT(view && scene()->views().size() == 1);
     if (view)
     {
@@ -559,7 +559,7 @@ void LiveFeedItem::ptzPresetWindow()
 
         window->move(itemScreenRect.right() - qRound(window->width() / 2.0),
                      itemScreenRect.top() + qMax(0, qRound((itemScreenRect.height() - window->height()) / 2.0)));
-    }
+    }*/
 
     window->show();
 }

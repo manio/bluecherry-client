@@ -52,7 +52,8 @@ LiveViewLayout::LiveViewLayout(QQuickItem *parent) :
     QQuickItem(parent), m_rows(0), m_columns(0), m_serverRepository(0),
     m_itemComponent(0), drag(0), layoutChanges(NoLayoutChanges)
 {
-    setAcceptDrops(true);
+    //setAcceptDrops(true);
+    setAcceptHoverEvents(true);
     setGridSize(1, 1);
 }
 
@@ -682,12 +683,12 @@ bool LiveViewLayout::drop()
 
 QPointF LiveViewLayout::cursorItemPos() const
 {
-    QGraphicsView *view = scene()->views().value(0);
+    /*QGraphicsView *view = scene()->views().value(0);
     Q_ASSERT(view && scene()->views().size() == 1);
-    if (!view)
+    if (!view)*/
         return QPointF(-1, -1);
 
-    return mapFromScene(view->mapToScene(view->viewport()->mapFromGlobal(QCursor::pos())));
+    //return mapFromScene(view->mapToScene(view->viewport()->mapFromGlobal(QCursor::pos())));
 }
 
 void LiveViewLayout::dragEnterEvent(QGraphicsSceneDragDropEvent *event)
